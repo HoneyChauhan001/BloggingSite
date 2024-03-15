@@ -8,6 +8,7 @@ const Input = React.forwardRef(
         ...props
     }, ref) {
         const id = useId()
+        console.log(`ref: ${ref}`)
 
         return (
             <div className='w-full'>
