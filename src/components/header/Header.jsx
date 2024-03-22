@@ -46,15 +46,16 @@ function Header() {
                     </div>
                     <ul className='flex ml-auto'>
                         {
-                            navItems.map((item) => {
+                            navItems.map((item) =>
                                 item.active ? (
                                     <li key={item.name}>
-                                        <button onClick={() => navigate(item.slug)} className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'>
-                                            {item.name}
-                                        </button>
+                                        <button
+                                            onClick={() => navigate(item.slug)}
+                                            className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full text-black'
+                                        >{item.name}</button>
                                     </li>
                                 ) : null
-                            })
+                            )
                         }
                         {
                             authStatus && (

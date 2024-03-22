@@ -67,7 +67,7 @@ class DatabaseService {
 
     async getPost(slug) {
         try {
-            await this.databases.getDocument(
+            return await this.databases.getDocument(
                 config.appWriteDatabseId,
                 config.appWriteCollectionId,
                 slug

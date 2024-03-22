@@ -40,11 +40,12 @@ class AuthService {
         } catch (error) {
             console.log("Appwrite service :: getCurrentUser :: error", error);
         }
+        return null;
     }
 
     async logout() {
         try {
-            await this.account.deleteSession()
+            await this.account.deleteSessions()
         } catch (error) {
             console.log("Appwrite service :: logout :: error", error);
         }

@@ -4,8 +4,8 @@ import postSlice from './postSlice'
 
 const store = configureStore({
     reducer: {
-        auth: authSlice,
-        post: postSlice
+        auth: authSlice
+        // post: postSlice
     }
 
 })
