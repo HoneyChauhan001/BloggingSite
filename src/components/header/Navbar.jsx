@@ -41,9 +41,9 @@ export default function Navbar() {
                                     )}
                                 </Disclosure.Button>
                             </div>
-                            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                            <div className="flex flex-1 items-center justify-center sm:items-center sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
-                                    <Logo />
+                                    <Logo width='60px'/>
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
                                     <ul className="flex space-x-4">
@@ -99,7 +99,7 @@ export default function Navbar() {
                                             <span className="sr-only">Open user menu</span>
                                             <img
                                                 className="h-8 w-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                                                 alt=""
                                             />
                                         </Menu.Button>

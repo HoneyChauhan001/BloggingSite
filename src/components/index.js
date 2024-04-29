@@ -10,6 +10,7 @@ import Signup from "./Signup";
 import Protected from "./AuthLayout";
 import RTE from "./RTE";
 import PostForm from "./post-form/PostForm";
+import PageNotFound from "./PageNotFound";
 
 export {
     Logo,
@@ -23,6 +24,7 @@ export {
     Signup,
     Protected,
     RTE,
-    PostForm
+    PostForm,
+    PageNotFound
 
 }

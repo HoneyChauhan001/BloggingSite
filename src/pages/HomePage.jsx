@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import databaseService from '../appwrite/appWriteDatabase'
 import { Container, PostCard } from '../components/index'
+import { useSelector } from 'react-redux'
 
 function HomePage() {
     const [posts, setPosts] = useState([])
+    const authStatus = useSelector((state) => state.auth.status)
     useEffect(() => {
         databaseService.getPosts().then((posts) => {
             if (posts) {
@@ -12,14 +14,14 @@ function HomePage() {
         })
     }, [])
 
-    if (posts.length === 0) {
+    if (!authStatus) {
         return (
             <div className='w-full py-8 mt-4 text-center'>
                 <Container>
                     <div className='flex flex-wrap'>
                         <div className='p-2 w-full'>
                             <h1 className='text-2xl font-bold hover:text-gray-500'>
-                                No Posts Available / Login to read Posts
+                                Login to See Posts
                             </h1>
                         </div>
                     </div>
@@ -27,6 +29,23 @@ function HomePage() {
             </div>
         )
     }
+
+    if (posts.length === 0) {
+        return (
+            <div className='w-full py-8 mt-4 text-center'>
+                <Container>
+                    <div className='flex flex-wrap'>
+                        <div className='p-2 w-full'>
+                            <h1 className='text-2xl font-bold hover:text-gray-500'>
+                                No Posts Available
+                            </h1>
+                        </div>
+                    </div>
+                </Container>
+            </div>
+        )
+    }
+
     return (
         <div className='w-full py-8'>
             <Container>

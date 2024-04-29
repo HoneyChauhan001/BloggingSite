@@ -13,6 +13,7 @@ import AllPostPage from './pages/AllPostPage.jsx'
 import AddPostPage from './pages/AddPostPage.jsx'
 import EditPostPage from './pages/EditPostPage.jsx'
 import PostPage from './pages/PostPage.jsx'
+import NotFoundPage from './pages/NotFoundPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,15 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />
+      },
+      {
+        path: "/not-found",
+        element: (
+          <AuthLayout authentication={false}>
+            {" "}
+            <NotFoundPage />
+          </AuthLayout>
+        )
       },
       {
         path: "/login",
