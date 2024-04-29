@@ -9,7 +9,6 @@ import parse from "html-react-parser"
 function PostPage() {
     const [post, setPost] = useState(null);
     const { slug } = useParams();
-    console.log(slug)
     const navigate = useNavigate()
     const userData = useSelector((state) => state.auth.userData)
     const isAuthor = post && userData ? post.userId === userData.$id : false;
@@ -17,7 +16,6 @@ function PostPage() {
     useEffect(() => {
         if (slug) {
             databaseService.getPost(slug).then((post) => {
-                console.log(post)
                 if (post) setPost(post)
                 else navigate("/")
             })
