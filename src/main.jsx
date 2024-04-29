@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       {
         path: "/not-found",
         element: (
-          <AuthLayout authentication={false}>
+          <AuthLayout authentication>
             {" "}
             <NotFoundPage />
           </AuthLayout>
