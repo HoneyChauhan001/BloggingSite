@@ -6,9 +6,6 @@ import { useSelector } from 'react-redux'
 function HomePage() {
     const [posts, setPosts] = useState([])
     const authStatus = useSelector((state) => state.auth.status)
-    const userData = useSelector((state) => state.auth.userData)
-
-    console.log("home",userData)
 
     useEffect(() => {
         databaseService.getPosts().then((posts) => {
