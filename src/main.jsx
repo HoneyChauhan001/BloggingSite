@@ -14,6 +14,8 @@ import AddPostPage from './pages/AddPostPage.jsx'
 import EditPostPage from './pages/EditPostPage.jsx'
 import PostPage from './pages/PostPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
+import AccountVarificationPage from './pages/AccountVarificationPage.jsx'
+import VerificationNotificationPage from './pages/VerificationNotificationPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,24 @@ const router = createBrowserRouter([
             <NotFoundPage />
           </AuthLayout>
         )
+      },
+      {
+        path: "/verify",
+        element: (
+          <AuthLayout authentication={false}>
+            <AccountVarificationPage />
+          </AuthLayout>
+        )
+
+      },
+      {
+        path: "/verify-notification",
+        element: (
+          <AuthLayout authentication={false}>
+            <VerificationNotificationPage />
+          </AuthLayout>
+        )
+
       },
       {
         path: "/login",

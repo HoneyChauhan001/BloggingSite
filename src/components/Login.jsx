@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { login as authLogin } from '../store/authSlice'
+import { login as authLogin, logout as authlogout } from '../store/authSlice'
 import { Button, Input, Logo } from './index'
 import { useDispatch } from 'react-redux'
 import authService from '../appwrite/appWriteAuth'
@@ -19,8 +19,15 @@ function Login() {
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                if (userData) dispatch(authLogin(userData))
-                navigate("/")
+                if (userData && userData.emailVerification) {
+                    dispatch(authLogin(userData))
+                    navigate("/")
+                }
+                else {
+                    await authService.logout();
+                    dispatch(authlogout())
+                    navigate("/verify-notification")
+                }
             }
         } catch (error) {
             setError(error.message)

@@ -12,17 +12,51 @@ class AuthService {
         this.account = new Account(this.client)
     }
 
+    // async createAccount({ email, password, name }) {
+    //     try {
+    //         const userAccount = await this.account.create(ID.unique(), email, password, name)
+    //         if (userAccount) {
+    //             //login the user
+    //             return await this.login({email,password});
+    //         } else {
+    //             return userAccount;
+    //         }
+    //     } catch (error) {
+    //         throw error;
+    //     }
+    // }
+
     async createAccount({ email, password, name }) {
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name)
-            if (userAccount) {
-                //login the user
-            } else {
-                return userAccount;
-            }
-
+            await this.login({email, password})
+            console.log("login done")
+            await this.createVerification()
+            console.log("creat verification")
+            await this.logout()
+            console.log("logout done")
+            console.log("Appwrite service :: createAccount");
         } catch (error) {
             throw error;
+        }
+    }
+
+    async createVerification(){
+        try{
+            await this.account.createVerification("https://wondrous-gumption-b2857b.netlify.app/verify")
+            console.log("Appwrite service :: createVerification");
+        } catch (error){
+            throw error
+        }
+    }
+
+    async updateVerification({ userId, secret }) {
+        try {
+            await this.account.updateVerification(userId, secret);
+            console.log("Appwrite service :: updateVarification");
+        } catch (error) {
+            console.log("Appwrite service :: updateVerification :: error", error);
+            throw error
         }
     }
 
@@ -30,12 +64,14 @@ class AuthService {
         try {
             return await this.account.createEmailPasswordSession(email, password)
         } catch (error) {
+            console.log("Appwrite service :: login :: error", error);
             throw error
         }
     }
 
     async getCurrentUser() {
         try {
+            console.log("Appwrite service :: getCurrentUser")
             return await this.account.get();
         } catch (error) {
             console.log("Appwrite service :: getCurrentUser :: error", error);
@@ -46,6 +82,7 @@ class AuthService {
     async logout() {
         try {
             await this.account.deleteSessions()
+            console.log("Appwrite service :: logout")
         } catch (error) {
             console.log("Appwrite service :: logout :: error", error);
         }
