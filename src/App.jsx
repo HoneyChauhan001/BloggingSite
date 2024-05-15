@@ -16,7 +16,8 @@ function App() {
     console.log("App is running")
     authService.getCurrentUser()
       .then((userData) => {
-        if (userData) {
+        if (userData && userData.emailVerification) {
+          console.log(userData.emailVerification)
           dispatch(login({ userData }))
         } else {
           dispatch(logout())

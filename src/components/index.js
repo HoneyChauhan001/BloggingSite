@@ -11,6 +11,7 @@ import Protected from "./AuthLayout";
 import RTE from "./RTE";
 import PostForm from "./post-form/PostForm";
 import PageNotFound from "./PageNotFound";
+import AccountVerification from "./AccountVarification";
 
 export {
     Logo,
@@ -25,6 +26,6 @@ export {
     Protected,
     RTE,
     PostForm,
-    PageNotFound
-
+    PageNotFound,
+    AccountVerification
 }

@@ -9,22 +9,25 @@ import { Logo, Input, Button } from './index'
 function Signup() {
     const navigate = useNavigate()
     const [error, setError] = useState("")
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm()
 
+
     const createAccount = async (data) => {
         setError("")
+        setIsSubmitting(true)
         try {
-            const userData = await authService.createAccount(data)
-            if (userData) {
-                const userData = await authService.getCurrentUser()
-                if (userData) dispatch(authLogin(userData));
-                navigate("/")
-            }
+            const session = await authService.createAccount(data)
+            console.log("Signup :: creatAccount");
+            navigate("/verify-notification")
         } catch (error) {
             setError(error.message)
+        } finally {
+            setIsSubmitting(false)
         }
     }
+
     return (
         <div className='flex flex-col items-center justify-center'>
             <div className='mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10'>
@@ -74,7 +77,8 @@ function Signup() {
                             <Button
                                 type="submit"
                                 className='w-full'
-                            >Create Account</Button>
+                                disabled={isSubmitting}
+                            >{isSubmitting ? 'Submitting...' : 'Create Account'}</Button>
                         </div>
                     </form>
                 </div>

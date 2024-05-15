@@ -7,13 +7,18 @@ function HomePage() {
     const [posts, setPosts] = useState([])
     const authStatus = useSelector((state) => state.auth.status)
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const secret = urlParams.get('secret');
+    const userId = urlParams.get('userId');
+
+
     useEffect(() => {
         databaseService.getPosts().then((posts) => {
             if (posts) {
                 setPosts(posts.documents)
             }
         })
-    },[])
+    }, [])
 
     if (!authStatus) {
         return (
@@ -22,7 +27,7 @@ function HomePage() {
                     <div className='flex flex-wrap'>
                         <div className='p-2 w-full'>
                             <h1 className='text-2xl font-bold hover:text-gray-500'>
-                                Login to See Posts
+                                Login/Signup to See Posts
                             </h1>
                         </div>
                     </div>
