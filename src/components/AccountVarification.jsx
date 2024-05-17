@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import authService from '../appwrite/appWriteAuth';
-import { Button } from './index'
+import { Button } from './index';
+import { useNavigate } from 'react-router-dom';
 
 function AccountVerification() {
     //const { secret, userId } = useParams(); // Get secret and userId from URL params
@@ -10,6 +11,7 @@ function AccountVerification() {
     const [error, setError] = useState(null)
     const secret = urlParams.get('secret');
     const userId = urlParams.get('userId');
+    const navigate = useNavigate();
 
     // useEffect(() => {
     //     // Perform verification when component mounts
@@ -23,6 +25,7 @@ function AccountVerification() {
             console.log("varify account")
             await authService.updateVerification({ userId, secret });
             setVerificationStatus('success')
+            navigate("/login")
 
         } catch (error) {
             console.error('Verification failed:', error);
