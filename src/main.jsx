@@ -16,6 +16,8 @@ import PostPage from './pages/PostPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
 import AccountVarificationPage from './pages/AccountVarificationPage.jsx'
 import VerificationNotificationPage from './pages/VerificationNotificationPage.jsx'
+import ForgetPasswordPage from './pages/ForgetPasswordPage.jsx'
+import UpdatePasswordPage from './pages/UpdatePasswordPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -52,6 +54,22 @@ const router = createBrowserRouter([
           </AuthLayout>
         )
 
+      },
+      {
+        path: "/forgot-password",
+        element: (
+          <AuthLayout authentication={false}>
+            <ForgetPasswordPage />
+          </AuthLayout>
+        )
+      },
+      {
+        path: "/recover-password",
+        element: (
+          <AuthLayout authentication={false}>
+            <UpdatePasswordPage />
+          </AuthLayout>
+        )
       },
       {
         path: "/login",

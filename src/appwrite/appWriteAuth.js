@@ -29,7 +29,7 @@ class AuthService {
     async createAccount({ email, password, name }) {
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name)
-            await this.login({email, password})
+            await this.login({ email, password })
             console.log("login done")
             await this.createVerification()
             console.log("creat verification")
@@ -41,11 +41,12 @@ class AuthService {
         }
     }
 
-    async createVerification(){
-        try{
+    async createVerification() {
+        try {
             await this.account.createVerification("https://wondrous-gumption-b2857b.netlify.app/verify")
+            // await this.account.createVerification("http://localhost:5173/verify")
             console.log("Appwrite service :: createVerification");
-        } catch (error){
+        } catch (error) {
             throw error
         }
     }
@@ -85,6 +86,26 @@ class AuthService {
             console.log("Appwrite service :: logout")
         } catch (error) {
             console.log("Appwrite service :: logout :: error", error);
+        }
+    }
+
+    async passwordRecovery({ email }) {
+        try {
+            const token = await this.account.createRecovery(email, 'https://wondrous-gumption-b2857b.netlify.app/recover-password')
+            // const token = await this.account.createRecovery(email, 'http://localhost:5173/recover-password')
+            console.log('Appwrite service :: passwordRecovery')
+        } catch (error) {
+            console.log("Appwrite service :: passwordRecovery :: error", error)
+            throw error
+        }
+    }
+
+    async updatePasswordRecovery({ userId, secret, password }) {
+        try {
+            return await this.account.updateRecovery(userId, secret, password)
+        } catch (error) {
+            console.log("Appwrite service :: passwordRecovery :: error", error)
+            throw error
         }
     }
 

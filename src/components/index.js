@@ -12,6 +12,8 @@ import RTE from "./RTE";
 import PostForm from "./post-form/PostForm";
 import PageNotFound from "./PageNotFound";
 import AccountVerification from "./AccountVarification";
+import ForgetPassword from "./ForgetPassword";
+import UpdatePassword from "./UpdatePassword";
 
 export {
     Logo,
@@ -27,5 +29,7 @@ export {
     RTE,
     PostForm,
     PageNotFound,
-    AccountVerification
+    AccountVerification,
+    ForgetPassword,
+    UpdatePassword
 }
